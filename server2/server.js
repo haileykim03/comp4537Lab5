@@ -1,5 +1,4 @@
 const http = require("http");
-const url = require("url");
 const Database = require("./modules/database");
 const MESSAGES = require("./lang/en/messages");
 
@@ -18,8 +17,7 @@ class Server {
     }
 
     handleRequest(req, res) {
-        const q = url.parse(req.url, true);
-        const path = q.pathname || "";
+        const path = new URL(req.url, "http://localhost").pathname;
 
         if (req.method === "OPTIONS") {
             this.send(res, 204, null);

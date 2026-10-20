@@ -1,5 +1,3 @@
-const API_URL = "https://YOUR-APP.onrender.com/lab5/api/v1/sql";
-
 const PATIENTS = [
     { name: "Sara Brown", dateOfBirth: "1901-01-01" },
     { name: "John Smith", dateOfBirth: "1941-01-01" },
