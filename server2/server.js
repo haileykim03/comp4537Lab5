@@ -1,4 +1,9 @@
+/**
+ * Claude was used to help write, review, and refine the code.
+ */
+
 const http = require("http");
+const url = require("url");
 const Database = require("./modules/database");
 const MESSAGES = require("./lang/en/messages");
 
@@ -17,7 +22,8 @@ class Server {
     }
 
     handleRequest(req, res) {
-        const path = new URL(req.url, "http://localhost").pathname;
+        const q = url.parse(req.url, true);
+        const path = q.pathname || "";
 
         if (req.method === "OPTIONS") {
             this.send(res, 204, null);

@@ -1,3 +1,7 @@
+/**
+ * Claude was used to help write, review, and refine the code.
+ */
+
 const STRINGS = {
     TITLE: "Lab 5 - Patient Database",
     INSERT_BUTTON: "Insert sample patients",

@@ -1,3 +1,7 @@
+/**
+ * Claude was used to help write, review, and refine the code.
+ */
+
 const MESSAGES = {
     SERVER_RUNNING: "Server is running on port ",
     INSERT_SUCCESS: " row(s) inserted.",

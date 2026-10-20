@@ -1,3 +1,7 @@
+/**
+ * Claude was used to help write, review, and refine the code.
+ */
+
 const fs = require("fs");
 const mysql = require("mysql2/promise");
 
@@ -12,22 +16,20 @@ const INSERT_SQL = "INSERT INTO patient (name, dateOfBirth) VALUES (?, ?)";
 
 class Database {
     constructor() {
-        const ssl = process.env.DB_SSL === "false"
-            ? undefined
-            : { ca: fs.readFileSync(__dirname + "/../ca.pem") };
+        const ca = fs.readFileSync(__dirname + "/../ca.pem");
 
-        this.writer = this.createPool(process.env.DB_WRITER_USER, process.env.DB_WRITER_PASS, ssl);
-        this.reader = this.createPool(process.env.DB_READER_USER, process.env.DB_READER_PASS, ssl);
+        this.writer = this.createPool(process.env.DB_WRITER_USER, process.env.DB_WRITER_PASS, ca);
+        this.reader = this.createPool(process.env.DB_READER_USER, process.env.DB_READER_PASS, ca);
     }
 
-    createPool(user, password, ssl) {
+    createPool(user, password, ca) {
         return mysql.createPool({
             host: process.env.DB_HOST,
             port: Number(process.env.DB_PORT),
             database: process.env.DB_NAME,
             user: user,
             password: password,
-            ...(ssl ? { ssl: ssl } : {}),
+            ssl: { ca: ca },
             dateStrings: true
         });
     }
