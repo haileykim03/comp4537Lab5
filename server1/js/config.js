@@ -1,1 +1,1 @@
-const API_URL = "http://localhost:3000/lab5/api/v1/sql";
+const API_URL = "https://comp4537lab5-r8wv.onrender.com/lab5/api/v1/sql";
